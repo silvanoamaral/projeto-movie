@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server.js",
-    "client": "webpack-dev-server --config webpack.dev.js --colors",
+    "client": "webpack-dev-server --config webpack/webpack.dev.js --colors --open",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "build": "webpack -p --config webpack.prod.js",
+    "build": "webpack -p --config webpack/webpack.prod.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "keywords": [],

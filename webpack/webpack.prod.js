@@ -13,7 +13,7 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin ({
       title: 'Production Title',
-      template:path.join(__dirname, '/public/index.html'),
+      template:path.join(__dirname, '../public/index.html'),
       inject: 'body'
     })
   ]  
