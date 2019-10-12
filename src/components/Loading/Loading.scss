@@ -1,0 +1,27 @@
+.loading {
+  width: 100%;
+  padding: 50px 0;
+  min-height: 500px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin: 0 auto;
+    overflow: hidden;
+    text-indent: -1000px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg);}
+  }
+
+  .spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #e62429;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 1.2s linear infinite;
+  }
+}

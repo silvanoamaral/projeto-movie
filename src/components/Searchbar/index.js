@@ -1,57 +1,55 @@
 import React, { Component } from 'react'
+import { useHistory } from "react-router-dom"
 import debounce from 'lodash.debounce'
+import { connect } from 'react-redux'
+
+import getMovie from '../../services/fetchMovie'
 
 const waitTime = 500
-
 class Searchbar extends Component {
-  state = {
-    query: '',
-    isLoading: false,
-    results: [],
-    value: ''
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      isLoading: false,
+      value: ''
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    /* console.log('Searchbar - this.props.location',this.props)
+    console.log('Searchbar - prevProps.location',prevProps) */
   }
 
   debounceSingle = debounce(value => {
     if(value.length > 2 && value !== '') {
-      this.getData(value)
+      const { dispatch } = this.props
+      dispatch(getMovie.searchByNameMovie(value, 1))
     }
   }, waitTime)
 
-  getData = value => {
-    const apiKey = 'e2c70d159f475c3cf6bd625fd21f2312'
-
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${value}`)
-    .then(response => response.json())
-    .then(responseData => {
-      console.log(responseData)
-    })
-    .catch(error => {
-      console.error(error)
-      return []
-    })
-  }
-
   handleInputChange = event => {
     const { value } = event.target
-    this.debounceSingle(value)
+    //this.debounceSingle(value)
     this.setState({
-      query: event.target.value
+      value
     })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+    this.debounceSingle(this.state.value)
   }
 
   render() {
-    const { query } = this.state
+    const { value } = this.state
 
     return (
       <div className="searchForm">
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="Search for..."
-            value={ query }
+            value={ value }
             onChange={ this.handleInputChange }
           />
           <button className="btn btn-primary" type="submit">Submit form</button>
@@ -61,4 +59,26 @@ class Searchbar extends Component {
   }
 }
 
-export default Searchbar
+const mapStateToProps = state => {
+  const { movieReducer } = state
+
+  const {
+    error,
+    pending,
+    movie
+  } = movieReducer || {
+    error: false,
+    pending: true,
+    movie: []
+  }
+
+  return {
+    error,
+    pending,
+    movie
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Searchbar)

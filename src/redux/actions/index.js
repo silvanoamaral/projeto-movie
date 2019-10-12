@@ -4,16 +4,16 @@ import {
   FETCH_MOVIE_ERROR
 } from './actionTypes'
 
-export const fetchMarvelPending = () => ({
+export const fetchMoviePending = () => ({
   type: FETCH_MOVIE_PENDING
 })
 
-export const fetchMarvelSuccess = marvel => ({
+export const fetchMovieSuccess = movie => ({
   type: FETCH_MOVIE_SUCCESS,
-  marvel
+  movie
 })
 
-export const fetchMarvelError = error => ({
+export const fetchMovieError = error => ({
   type: FETCH_MOVIE_ERROR,
   error
 })

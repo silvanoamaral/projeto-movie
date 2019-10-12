@@ -1,31 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import getMovie from '../../services/fetchMovie'
 import Card from '../../components/Card'
 import Pagination from '../../components/Pagination'
+import Loading from '../../components/Loading'
 
 class Movie extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      popular: []
-    }
-  }
-
-  makeHttpRequestWithPage = async pageNumber => {
-    const apiKey = 'e2c70d159f475c3cf6bd625fd21f2312'
-    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR&page=${pageNumber}`)
-    .catch(err => {
-      console.error('Failed retrieving information', err)
-    })
-
-    const data = await response.json()
-
-    this.setState({
-      popular: data
-    })
-
-    window.scrollTo({top: 0, behavior: 'smooth'})
-  }
 
   componentDidMount() {
     let page = 1
@@ -35,37 +16,74 @@ class Movie extends Component {
       page = parsed.page
     }
 
-    this.makeHttpRequestWithPage(page)
+    const { dispatch } = this.props
+    dispatch(getMovie.fetchMovie(page))
   }
-/* 
-  componentDidUpdate(prevProps, prevState) {
 
-    if (Object.entries(prevState.popular).length) {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
       const queryString = require('query-string')
       const parsed = queryString.parse(this.props.location.search)
-      const pagePrevProps = queryString.parse(prevProps.location.search)
-  
-      if (parsed !== pagePrevProps.page) {
-        console.log('componentDidUpdate',pagePrevProps.page)
-        //this.makeHttpRequestWithPage(pagePrevProps.page)
-      }
+      const page = parsed.page === undefined ? 1 : parsed.page
+      const { dispatch } = this.props
+      dispatch(getMovie.fetchMovie(page))
+
+      window.scrollTo({top: 0, behavior: 'smooth'})
     }
-  } */
+  }
+
+  makeHttpRequestWithPage = pageNumber => {
+    const { dispatch } = this.props
+    dispatch(getMovie.fetchMovie(pageNumber))
+
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
 
   render() {
+    const { movie, error, pending } = this.props
+    const isEmpty = movie.length === 0
+
     return (
       <div className="movie">
         <h1>Popular Movies</h1>
-        <Card
-          movie={ this.state.popular }
-        />
-        <Pagination
-          data={ this.state.popular }
-          makeHttpRequestWithPage={ this.makeHttpRequestWithPage }
-        />
+        {isEmpty
+          ? (pending ? <Loading /> : <h2>Empty.</h2>)
+          : <>
+            <Card
+              movie={ movie }
+            />
+            <Pagination
+              data={ movie }
+              makeHttpRequestWithPage={ this.makeHttpRequestWithPage }
+            />
+          </>
+        }
+        
       </div>
     )
   }
 }
 
-export default Movie
+const mapStateToProps = state => {
+  const { movieReducer } = state
+
+  const {
+    error,
+    pending,
+    movie
+  } = movieReducer || {
+    error: false,
+    pending: true,
+    movie: []
+  }
+
+  return {
+    error,
+    pending,
+    movie
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Movie)
