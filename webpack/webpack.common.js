@@ -2,9 +2,7 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, '../src/index.js'),
-    serviceWorker: path.join(__dirname, '../public/serviceWorker.js'),
-    manifest: path.join(__dirname, '../public/manifest.json')
+    app: path.join(__dirname, '../src/index.js')
   },
   output: {
     filename: '[name].js',
@@ -29,5 +27,5 @@ module.exports = {
         use: ['file-loader']
       }
     ]
-  }   
+  }
 }
