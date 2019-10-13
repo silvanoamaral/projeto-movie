@@ -2,9 +2,10 @@
 const CACHE_NAME = 'movie-pwa-cache'
 
 const urlsToCache = [
-  "./",
-  "static/js/bundle.js",
-  'https://api.themoviedb.org/3/movie/popular/'
+  "/",
+  "index.html",
+  "app.js",
+  "https://api.themoviedb.org/3/movie/popular?api_key=e2c70d159f475c3cf6bd625fd21f2312&language=pt-BR&page=1"
 ]
 
 // A primeira vez que o usuário inicia a PWA, 'install' é acionado.
@@ -39,11 +40,12 @@ self.addEventListener("activate", event => {
 self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetch', event.request.url)
   event.respondWith(
-    caches.match(event.request)
-      .then(function (response) {
-        if (event.request.cache === 'only-if-cache') {
-          event.request.mode = 'same-origin'
-        }
+    caches
+    .match(event.request)
+    .then(function (response) {
+      if (event.request.cache === 'only-if-cache') {
+        event.request.mode = 'same-origin'
+      }
       return response || fetch(event.request)
     })
   )

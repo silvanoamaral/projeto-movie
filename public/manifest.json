@@ -1,5 +1,6 @@
 {
-  "name": "projeto-movie" , 
+  "name": "projeto-movie",
+  "theme_color": "#000000",
   "background_color": "#ffffff", 
   "display": "standalone",
   "orientation": "portrait ",
