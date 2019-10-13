@@ -22,10 +22,12 @@ class Pagination extends Component {
                 if (number === 1 || number === total_results || (number >= page - 2 && number <= page + 2)) {
                   return (
                     <Link
+                      aria-label={`pagination-${page}`}
+                      accesskey={`pagination-${page}`}
                       key={number}
                       className={ page === number ? 'active' : null }
                       onClick={() => this.props.makeHttpRequestWithPage(number) }
-                      to={`/movie?page=${number}`}>{number}     
+                      to={`/movie?page=${number}`}>{number}   
                     </Link>
                   )
                 }

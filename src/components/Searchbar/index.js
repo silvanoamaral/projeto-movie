@@ -48,8 +48,11 @@ class Searchbar extends Component {
       <div className="searchForm">
         <form onSubmit={this.handleSubmit}>
           <input
+            name="search-movie"
+            aria-label="search-movie"
             placeholder="Search for..."
             value={ value }
+            alt="Search for..."
             onChange={ this.handleInputChange }
           />
           <button className="btn btn-primary" type="submit">Submit form</button>
