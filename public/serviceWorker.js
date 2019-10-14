@@ -14,7 +14,7 @@ self.addEventListener('install', function (event) {
     caches.open(CACHE_NAME)
       .then(cache => {
         // Abre um cache e armazena nossos arquivos em cache
-        console.log('[ServiceWorker] Caching cacheFiles')
+        //console.log('[ServiceWorker] Caching cacheFiles')
         return cache.addAll(urlsToCache)
       })
   )
@@ -22,7 +22,7 @@ self.addEventListener('install', function (event) {
 
 // Elimina caches antigos que não sejam os atuais.
 self.addEventListener("activate", event => {
-  console.log('[ServiceWorker] Activated')
+  //console.log('[ServiceWorker] Activated')
   const cacheWhitelist = [CACHE_NAME]
   event.waitUntil(
     caches.keys().then(keyList =>
@@ -38,7 +38,7 @@ self.addEventListener("activate", event => {
 // Quando a página da Web vai buscar arquivos,
 // nós interceptamos esse pedido e servimos os arquivos correspondentes se tivemos
 self.addEventListener('fetch', function (event) {
-  console.log('[ServiceWorker] Fetch', event.request.url)
+  //console.log('[ServiceWorker] Fetch', event.request.url)
   event.respondWith(
     caches
     .match(event.request)

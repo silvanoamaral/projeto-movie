@@ -1,45 +1,54 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import getMovie from '../../services/fetchMovie'
 import MovieDetails from '../../components/MovieDetails'
+import Card from '../../components/Card'
+import Pagination from '../../components/Pagination'
+import Loading from '../../components/Loading'
 
 class Details extends Component {
-  state = {
-    data: []
-  }
-
-  getData = id => {
-    const apiKey = 'e2c70d159f475c3cf6bd625fd21f2312'
-
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=pt-BR`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({
-        data
-      })
-    })
-    .catch(error => {
-      console.error(error)
-      return []
-    })
-  }
 
   componentDidMount() {
-    const { match } = this.props
-    this.getData(match.params.id)
+    const { match, dispatch } = this.props
+    dispatch(getMovie.getByNameMovie(match.params.id))
   }
 
   render() {
-    const { data } = this.state
+    const { movie, pending } = this.props
+    const isEmpty = movie.length === 0
+
     return (
       <div className="details">
-        <h2>Details Movie</h2>
-        {data
-          &&
-          <MovieDetails movie={ data } />
+        {isEmpty
+          ? (pending ? <Loading /> : <h2>Empty.</h2>)
+          : <MovieDetails movie={ movie } />
         }
       </div>
     )
   }
 }
 
-export default Details
+const mapStateToProps = state => {
+  const { movieReducer } = state
+
+  const {
+    error,
+    pending,
+    movie
+  } = movieReducer || {
+    error: false,
+    pending: true,
+    movie: []
+  }
+
+  return {
+    error,
+    pending,
+    movie
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Details)

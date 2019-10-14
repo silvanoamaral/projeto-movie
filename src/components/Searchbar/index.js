@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { useHistory } from "react-router-dom"
 import debounce from 'lodash.debounce'
 import { connect } from 'react-redux'
+import { createBrowserHistory } from 'history'
 
 import getMovie from '../../services/fetchMovie'
 
+const history = createBrowserHistory()
 const waitTime = 500
 class Searchbar extends Component {
   constructor (props) {
@@ -16,21 +17,13 @@ class Searchbar extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    /* console.log('Searchbar - this.props.location',this.props)
-    console.log('Searchbar - prevProps.location',prevProps) */
-  }
-
   debounceSingle = debounce(value => {
-    if(value.length > 2 && value !== '') {
-      const { dispatch } = this.props
-      dispatch(getMovie.searchByNameMovie(value, 1))
-    }
+    const { dispatch } = this.props
+    dispatch(getMovie.searchByNameMovie(value, 1))
   }, waitTime)
 
   handleInputChange = event => {
     const { value } = event.target
-    //this.debounceSingle(value)
     this.setState({
       value
     })
@@ -38,7 +31,16 @@ class Searchbar extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.debounceSingle(this.state.value)
+    const { value } = this.state
+    if(value.length > 2 && value !== '') {
+      this.debounceSingle(value)
+
+      history.push(`/search?query=${value}`)
+
+      this.setState({
+        value: ''
+      })
+    }
   }
 
   render() {

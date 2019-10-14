@@ -15,7 +15,8 @@ class App extends Component {
           <Switch>
             <Route path='/' exact component={ Movie } />
             <Route path='/movie/:id' component={ Details } />
-            <Route path='/movie' exact search={ '?page=:page' }  component={ Movie } />            
+            <Route path='/movie' exact search={ '?page=:page' } component={ Movie } />
+            <Route path='/search' exact search={ '?search=:search' } component={ Movie } /> 
             <Route component={ NoMatch } />
           </Switch>
         </Router>

@@ -12,11 +12,15 @@ class Movie extends Component {
     let page = 1
     const queryString = require('query-string')
     const parsed = queryString.parse(this.props.location.search)
+
     if(parsed.page !== undefined) {
       page = parsed.page
     }
 
     const { dispatch } = this.props
+
+    parsed.query !== undefined ?
+    dispatch(getMovie.searchByNameMovie(parsed.query, 1)) :
     dispatch(getMovie.fetchMovie(page))
   }
 
@@ -58,7 +62,6 @@ class Movie extends Component {
             />
           </>
         }
-        
       </div>
     )
   }

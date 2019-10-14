@@ -23,14 +23,10 @@ const fetchMovie = (pageNumber = 1) => {
   }
 }
 
-const getByMovie = (movieId = 0) => {
+const getByNameMovie = movieId => {
   return dispatch => {
     dispatch(fetchMoviePending())
-    fetch('/api/bycharacter', {
-      headers: new Headers({
-        id: movieId
-      })
-    })
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`)
     .then(res => {
       return res.json()
     })
@@ -38,7 +34,7 @@ const getByMovie = (movieId = 0) => {
       if(res.error) {
         throw(res.error)
       }
-      const data = res.response.data
+      const data = res
       dispatch(fetchMovieSuccess(data))
       return data
     })
@@ -70,12 +66,12 @@ const searchByNameMovie = (nameMovie, page = 1) => {
 
 /* module.exports = {
   fetchMovie,
-  getByMovie,
+  getByNameMovie,
   searchByNameMovie
 } */
 
 export default {
   fetchMovie,
-  getByMovie,
+  getByNameMovie,
   searchByNameMovie
 }

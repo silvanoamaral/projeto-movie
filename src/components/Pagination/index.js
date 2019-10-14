@@ -23,7 +23,7 @@ class Pagination extends Component {
                   return (
                     <Link
                       aria-label={`pagination-${page}`}
-                      accesskey={`pagination-${page}`}
+                      accessKey={`pagination-${page}`}
                       key={number}
                       className={ page === number ? 'active' : null }
                       onClick={() => this.props.makeHttpRequestWithPage(number) }

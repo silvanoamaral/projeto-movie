@@ -4,6 +4,7 @@ const MovieDetails = obj => {
   const { title, overview, poster_path } = obj.movie
   return (
     <div className="movie__details">
+      <h2>Details Movie</h2>
       <h1>{ title }</h1>
       <p>{ overview }</p>
       <figure>

@@ -15,7 +15,7 @@ class Card extends Component {
                   <Link 
                     to={`/movie/${item.id}`}
                     aria-label={`movie-${item.title}`}
-                    accesskey={`movie-${item.title}-${item.id}`}
+                    accessKey={`movie-${item.title}-${item.id}`}
                   >
                     <img
                       src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${item.poster_path}`}
@@ -30,7 +30,7 @@ class Card extends Component {
                       <Link
                         to={`/movie/${item.id}`}
                         aria-label={`movie-${item.title}`}
-                        accesskey={`movie-${item.title}-${item.id}`}
+                        accessKey={`movie-${item.title}-${item.id}`}
                       >
                         { item.title }
                       </Link>
@@ -41,7 +41,7 @@ class Card extends Component {
                     <Link
                       to={`/movie/${item.id}`}
                       aria-label={`movie-${item.title}`}
-                      accesskey={`movie-${item.title}-${item.id}`}
+                      accessKey={`movie-${item.title}-${item.id}`}
                     >
                       { item.overview }
                     </Link>
