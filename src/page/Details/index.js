@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import getMovie from '../../services/fetchMovie'
-import MovieDetails from '../../components/MovieDetails'
-import Card from '../../components/Card'
-import Pagination from '../../components/Pagination'
 import Loading from '../../components/Loading'
+import Searchbar from '../../components/Searchbar'
+import MovieDetails from '../../components/MovieDetails'
+
+import getMovie from '../../services/fetchMovie'
 
 class Details extends Component {
 
@@ -22,7 +22,10 @@ class Details extends Component {
       <div className="details">
         {isEmpty
           ? (pending ? <Loading /> : <h2>Empty.</h2>)
-          : <MovieDetails movie={ movie } />
+          : <>
+            <Searchbar />
+            <MovieDetails movie={ movie } />
+          </>
         }
       </div>
     )

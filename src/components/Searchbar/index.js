@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import debounce from 'lodash.debounce'
 import { connect } from 'react-redux'
-import { createBrowserHistory } from 'history'
+import debounce from 'lodash.debounce'
+import { push } from 'connected-react-router'
 
-import getMovie from '../../services/fetchMovie'
-
-const history = createBrowserHistory()
 const waitTime = 500
+
 class Searchbar extends Component {
   constructor (props) {
     super(props)
@@ -19,11 +17,12 @@ class Searchbar extends Component {
 
   debounceSingle = debounce(value => {
     const { dispatch } = this.props
-    dispatch(getMovie.searchByNameMovie(value, 1))
+    dispatch(push(`/search?query=${value}`))
   }, waitTime)
 
   handleInputChange = event => {
     const { value } = event.target
+
     this.setState({
       value
     })
@@ -31,11 +30,11 @@ class Searchbar extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
     const { value } = this.state
+
     if(value.length > 2 && value !== '') {
       this.debounceSingle(value)
-
-      history.push(`/search?query=${value}`)
 
       this.setState({
         value: ''
@@ -44,20 +43,18 @@ class Searchbar extends Component {
   }
 
   render() {
-    const { value } = this.state
-
     return (
       <div className="search">
         <form onSubmit={this.handleSubmit} className="search__form">
           <input
             name="search-movie"
             aria-label="search-movie"
-            placeholder="Search for..."
-            value={ value }
-            alt="Search for..."
+            placeholder="Buscar por..."
+            value={ this.state.value }
+            alt="Buscar por..."
             onChange={ this.handleInputChange }
           />
-          <button className="btn btn-primary" type="submit">Submit form</button>
+          <button className="btn btn-primary" type="submit">Buscar</button>
         </form>
       </div>
     )

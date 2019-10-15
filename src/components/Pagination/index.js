@@ -26,7 +26,7 @@ class Pagination extends Component {
                       accessKey={`pagination-${page}`}
                       key={number}
                       className={ page === number ? 'active' : null }
-                      onClick={() => this.props.makeHttpRequestWithPage(number) }
+                      onClick={() => this.props.makeRequestPage(number) }
                       to={`/movie?page=${number}`}>{number}   
                     </Link>
                   )

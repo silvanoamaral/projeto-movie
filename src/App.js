@@ -1,26 +1,15 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
-import Searchbar from './components/Searchbar'
-import Movie from './page/Movie'
-import Details from './page/Details'
-import NoMatch from './components/NoMatch'
+import Routes from './routes'
+import store from './redux/store'
 
 class App extends Component {
   render () {
     return (
-      <div className="App">
-        <Searchbar/>
-        <Router>
-          <Switch>
-            <Route path='/' exact component={ Movie } />
-            <Route path='/movie/:id' component={ Details } />
-            <Route path='/movie' exact search={ '?page=:page' } component={ Movie } />
-            <Route path='/search' exact search={ '?search=:search' } component={ Movie } /> 
-            <Route component={ NoMatch } />
-          </Switch>
-        </Router>
-      </div>
+      <Provider store={store}>        
+        <Routes />
+      </Provider>
     )
   }
 }

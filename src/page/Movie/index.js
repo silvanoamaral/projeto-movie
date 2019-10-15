@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import getMovie from '../../services/fetchMovie'
 import Card from '../../components/Card'
-import Pagination from '../../components/Pagination'
 import Loading from '../../components/Loading'
+import Searchbar from '../../components/Searchbar'
+import Pagination from '../../components/Pagination'
+
+import getMovie from '../../services/fetchMovie'
 
 class Movie extends Component {
 
@@ -36,7 +38,7 @@ class Movie extends Component {
     }
   }
 
-  makeHttpRequestWithPage = pageNumber => {
+  makeRequestPage = pageNumber => {
     const { dispatch } = this.props
     dispatch(getMovie.fetchMovie(pageNumber))
 
@@ -44,11 +46,12 @@ class Movie extends Component {
   }
 
   render() {
-    const { movie, error, pending } = this.props
+    const { movie, pending } = this.props
     const isEmpty = movie.length === 0
 
     return (
       <div className="movie">
+        <Searchbar />
         <h1>Popular Movies</h1>
         {isEmpty
           ? (pending ? <Loading /> : <h2>Empty.</h2>)
@@ -58,7 +61,7 @@ class Movie extends Component {
             />
             <Pagination
               data={ movie }
-              makeHttpRequestWithPage={ this.makeHttpRequestWithPage }
+              makeRequestPage={ this.makeRequestPage }
             />
           </>
         }
