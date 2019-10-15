@@ -4,20 +4,21 @@
   "background_color": "#ffffff", 
   "display": "standalone",
   "orientation": "portrait ",
-  "start_url": ".",
+  "start_url": "https://projeto-movie-app.herokuapp.com/",
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "image/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "image/favicon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "image/favicon.png",
       "type": "image/png",
       "sizes": "512x512"
     }

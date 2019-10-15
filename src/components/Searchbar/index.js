@@ -49,9 +49,9 @@ class Searchbar extends Component {
           <input
             name="search-movie"
             aria-label="search-movie"
-            placeholder="Buscar por..."
+            placeholder="Search Movie Title..."
             value={ this.state.value }
-            alt="Buscar por..."
+            alt="Search Movie Title..."
             onChange={ this.handleInputChange }
           />
           <button className="btn btn-primary" type="submit">Buscar</button>

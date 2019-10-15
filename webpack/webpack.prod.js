@@ -26,7 +26,8 @@ module.exports = merge(common, {
       }
     }),
     new HtmlWebpackPlugin ({
-      title: 'Production Title',
+      title: 'ReactJS - The Movie Database (TMDb)',
+      favicon: path.join(__dirname, '../public/image/favicon.png'),
       template:path.join(__dirname, '../public/index.html'),
       inject: 'body'
     })

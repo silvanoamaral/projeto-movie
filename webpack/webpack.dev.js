@@ -18,7 +18,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin ({
-      title: 'development Title',
+      title: 'Development Title',
+      favicon: path.join(__dirname, '../public/image/favicon.png'),
       template:path.join(__dirname, '../public/index.html'),
       inject: true
     })
