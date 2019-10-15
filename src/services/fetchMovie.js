@@ -23,7 +23,8 @@ const fetchMovie = (pageNumber = 1) => {
   }
 }
 
-const getByNameMovie = movieId => {
+const getByIDMovie = movieId => {
+
   return dispatch => {
     dispatch(fetchMoviePending())
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`)
@@ -66,12 +67,12 @@ const searchByNameMovie = (nameMovie, page = 1) => {
 
 /* module.exports = {
   fetchMovie,
-  getByNameMovie,
+  getByIDMovie,
   searchByNameMovie
 } */
 
 export default {
   fetchMovie,
-  getByNameMovie,
+  getByIDMovie,
   searchByNameMovie
 }

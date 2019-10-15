@@ -11,7 +11,7 @@ class Details extends Component {
 
   componentDidMount() {
     const { match, dispatch } = this.props
-    dispatch(getMovie.getByNameMovie(match.params.id))
+    dispatch(getMovie.getByIDMovie(match.params.id))
   }
 
   render() {

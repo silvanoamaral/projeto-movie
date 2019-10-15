@@ -47,8 +47,8 @@ class Searchbar extends Component {
     const { value } = this.state
 
     return (
-      <div className="searchForm">
-        <form onSubmit={this.handleSubmit}>
+      <div className="search">
+        <form onSubmit={this.handleSubmit} className="search__form">
           <input
             name="search-movie"
             aria-label="search-movie"

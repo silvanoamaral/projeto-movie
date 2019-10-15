@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NoMatch = ({ location }) => {
+const NoMatch = location => {
   return (
     <div>
       <h3>
