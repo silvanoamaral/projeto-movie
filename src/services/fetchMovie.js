@@ -11,11 +11,7 @@ const fetchMovie = (pageNumber = 1) => {
       return res.json()
     })
     .then(res => {
-      if(res.error) {
-        throw(res.error)
-      }
-      const data = res
-      dispatch(fetchMovieSuccess(data))
+      dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
       dispatch(fetchMovieError(error))
@@ -32,12 +28,7 @@ const getByIDMovie = movieId => {
       return res.json()
     })
     .then(res => {
-      if(res.error) {
-        throw(res.error)
-      }
-      const data = res
-      dispatch(fetchMovieSuccess(data))
-      return data
+      dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
       dispatch(fetchMovieError(error))
@@ -47,29 +38,19 @@ const getByIDMovie = movieId => {
 
 const searchByNameMovie = (nameMovie, page = 1) => {
   return dispatch => {
-    dispatch(fetchMoviePending())    
+    dispatch(fetchMoviePending())
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=pt-BR&query=${nameMovie}&page=${page}`)
     .then(res => {
       return res.json()
     })
     .then(res => {
-      if(res.error) {
-        throw(res.error)
-      }
-      const data = res
-      dispatch(fetchMovieSuccess(data))
+      dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
       dispatch(fetchMovieError(error))
     })
   }
 }
-
-/* module.exports = {
-  fetchMovie,
-  getByIDMovie,
-  searchByNameMovie
-} */
 
 export default {
   fetchMovie,
