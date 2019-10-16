@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import './Card.scss'
+
 class Card extends Component {
   render() {
     const { results } = this.props.movie

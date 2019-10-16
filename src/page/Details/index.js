@@ -20,13 +20,13 @@ class Details extends Component {
 
     return (
       <div className="details">
-        {isEmpty
-          ? (pending ? <Loading /> : <h2>Empty.</h2>)
-          : <>
-            <Searchbar />
-            <MovieDetails movie={ movie } />
-          </>
-        }
+        <Searchbar />
+        <div className="container">
+          {isEmpty
+            ? (pending ? <Loading /> : <h2>Empty.</h2>)
+            : <MovieDetails movie={ movie } />
+          }
+        </div>
       </div>
     )
   }

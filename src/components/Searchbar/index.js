@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import debounce from 'lodash.debounce'
 import { push } from 'connected-react-router'
 
+import './Searchbar.scss'
+
 const waitTime = 500
 
 class Searchbar extends Component {
@@ -45,17 +47,21 @@ class Searchbar extends Component {
   render() {
     return (
       <div className="search">
-        <form onSubmit={this.handleSubmit} className="search__form">
-          <input
-            name="search-movie"
-            aria-label="search-movie"
-            placeholder="Search Movie Title..."
-            value={ this.state.value }
-            alt="Search Movie Title..."
-            onChange={ this.handleInputChange }
-          />
-          <button className="btn btn-primary" type="submit">Buscar</button>
-        </form>
+        <div className="container">
+          <form onSubmit={this.handleSubmit} className="search__form">
+            <input
+              type="text"
+              name="search-movie"
+              aria-label="search-movie"
+              placeholder="Search Movie Title..."
+              value={ this.state.value }
+              alt="Search Movie Title..."
+              onChange={ this.handleInputChange }
+              autoComplete="off"
+            />
+            <button className="icone lupa" type="submit"></button>
+          </form>
+        </div>
       </div>
     )
   }

@@ -14,13 +14,13 @@ const fetchMovie = (pageNumber = 1) => {
       dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
+      console.log('Error:.', error,message)
       dispatch(fetchMovieError(error))
     })
   }
 }
 
 const getByIDMovie = movieId => {
-
   return dispatch => {
     dispatch(fetchMoviePending())
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=pt-BR`)
@@ -31,6 +31,7 @@ const getByIDMovie = movieId => {
       dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
+      console.log('Error:.', error,message)
       dispatch(fetchMovieError(error))
     })
   }
@@ -47,6 +48,7 @@ const searchByNameMovie = (nameMovie, page = 1) => {
       dispatch(fetchMovieSuccess(res))
     })
     .catch(error => {
+      console.log('Error:.', error,message)
       dispatch(fetchMovieError(error))
     })
   }

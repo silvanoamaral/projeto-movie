@@ -1,0 +1,56 @@
+.search {
+  width: 100%;
+  background-color: #fff;
+  height: 46px;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 30px;
+
+  &__form {
+    display: block;
+    position: relative;
+
+    input[type=text] {
+      width: 100%;
+      height: 46px;
+      outline: none;
+      font-style: italic;
+      font-size: 100%;
+      line-height: 1.2em;
+      color: #000;
+      box-sizing: border-box;
+      text-indent: 0;
+      padding: 0 30px;
+    }
+
+    button[type=submit] {
+      position: absolute;
+      left: 0;
+      top: 12px;
+
+      &.icone {
+        background: transparent;
+
+        &.lupa {
+          cursor: pointer;
+          width: 15px;
+          height: 15px;
+          border: 2px solid #acacac;
+          border-radius: 50%;
+
+          &:after {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #acacac;
+            display: block;
+            content: "";
+            top: -6px;
+            left: -10px;
+            transform: rotate(45deg);
+            transform-origin: -7px 32px;
+          }
+        }
+      }
+    }
+  }
+}

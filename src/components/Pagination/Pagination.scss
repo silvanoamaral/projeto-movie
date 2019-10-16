@@ -1,16 +1,32 @@
 .pagination {
+  text-align: center;
+  padding: 30px 0;
+
+  span {
+    margin: 10px;
+
+    @media (min-width: 700px) {
+      margin: 20px;
+    }
+  }
+
   a {
     width: 20px;
     height: 20px;
     display: inline-block;
-    border: 1px solid #ccc;
-    margin: 10px;
-    padding: 20px;
+    border: 1px solid #083d56;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
     cursor: pointer;
     text-decoration: none;
 
     &.active {
-      border-color: #000;
+      border-color: #fff;
+    }
+
+    @media (min-width: 700px) {
+      margin: 10px;
     }
   }
 }

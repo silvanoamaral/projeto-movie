@@ -1,0 +1,45 @@
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .item {
+    width: 100%;
+    display: flex;
+    margin-bottom: 40px;
+    background: #fff;
+    padding: 5px;
+
+    figure {
+      margin-right: 15px;
+    }
+
+    @media (min-width: 700px) {
+      width: 483px;
+    }
+
+    strong {
+      &.title {
+        a {
+          color: #000;
+        }
+      } 
+    }
+
+    p {
+      a {
+        color: #4d4d4d;
+        display: block;
+        word-wrap: break-word;
+        white-space: normal;
+        font-size: 0.9em;
+        line-height: 1.2em;
+        margin-top: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0;
+        width: 100%;
+      }
+    }
+  }
+}

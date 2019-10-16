@@ -10,6 +10,15 @@ import getMovie from '../../services/fetchMovie'
 
 class Movie extends Component {
 
+  checkQuery(parsed, page) {
+    const { dispatch } = this.props
+    parsed.query !== undefined ?
+    dispatch(getMovie.searchByNameMovie(parsed.query, 1)) :
+    dispatch(getMovie.fetchMovie(page))
+
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+
   componentDidMount() {
     let page = 1
     const queryString = require('query-string')
@@ -19,22 +28,16 @@ class Movie extends Component {
       page = parsed.page
     }
 
-    const { dispatch } = this.props
-
-    parsed.query !== undefined ?
-    dispatch(getMovie.searchByNameMovie(parsed.query, 1)) :
-    dispatch(getMovie.fetchMovie(page))
+    this.checkQuery(parsed, page)
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       const queryString = require('query-string')
       const parsed = queryString.parse(this.props.location.search)
-      const page = parsed.page === undefined ? 1 : parsed.page
-      const { dispatch } = this.props
-      dispatch(getMovie.fetchMovie(page))
+      const page = parsed.page === undefined ? 1 : parsed.page      
 
-      window.scrollTo({top: 0, behavior: 'smooth'})
+      this.checkQuery(parsed, page)
     }
   }
 
@@ -51,11 +54,11 @@ class Movie extends Component {
 
     return (
       <div className="movie">
-        <Searchbar />
-        <h1>Popular Movies</h1>
+        <Searchbar />        
         {isEmpty
           ? (pending ? <Loading /> : <h2>Empty.</h2>)
-          : <>
+          : <div className="container">
+            <h1 className="title">Popular Movies</h1>
             <Card
               movie={ movie }
             />
@@ -63,7 +66,7 @@ class Movie extends Component {
               data={ movie }
               makeRequestPage={ this.makeRequestPage }
             />
-          </>
+          </div>
         }
       </div>
     )
