@@ -5,18 +5,20 @@ import { ConnectedRouter } from 'connected-react-router'
 import Movie from '../page/Movie'
 import Details from '../page/Details'
 import NoMatch from '../components/NoMatch'
+import Header from '../components/Header'
 
 import history from './history'
 
 const Routes = () => (
   <ConnectedRouter history={ history }>
+    <Header />
     <Switch>
       <Route path='/' exact component={ Movie } />
       <Route path='/movie/:id' component={ Details } />
       <Route path='/movie' exact search={ '?page=:page' } component={ Movie } />
       <Route path='/search' exact search={ '?search=:search' } component={ Movie } /> 
       <Route component={ NoMatch } />
-    </Switch>
+    </Switch>    
   </ConnectedRouter>
 )
 

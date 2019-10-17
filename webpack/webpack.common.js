@@ -22,7 +22,7 @@ module.exports = {
         loader:['style-loader','css-loader', 'sass-loader']
       },
       {
-        test: /\.(jpe?g|png|gif|mp3)$/i,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         include: path.resolve(__dirname, '../public/image/'),
         use: ['file-loader']
       }
