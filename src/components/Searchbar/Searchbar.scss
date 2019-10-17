@@ -36,6 +36,7 @@
           height: 15px;
           border: 2px solid #acacac;
           border-radius: 50%;
+          left: 5px;
 
           &:after {
             position: absolute;
@@ -48,6 +49,10 @@
             left: -10px;
             transform: rotate(45deg);
             transform-origin: -7px 32px;
+          }
+
+          @media (min-width: 700px) {
+            left: 0px;
           }
         }
       }

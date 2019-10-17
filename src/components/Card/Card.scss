@@ -2,6 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0 10px;
+
+  @media (min-width: 700px) {
+    padding: 0;
+  }
 
   .item {
     width: 100%;
@@ -16,7 +21,7 @@
     }
 
     @media (min-width: 700px) {
-      width: 483px;
+      width: 48%;
     }
 
     p {

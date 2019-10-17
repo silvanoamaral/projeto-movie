@@ -2,8 +2,11 @@ import React from 'react'
 
 import './MovieDetails.scss'
 
+const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' } 
+
 const MovieDetails = obj => {
-  const { title, overview, poster_path, vote_average } = obj.movie
+  const { title, overview, poster_path, vote_average, release_date } = obj.movie
+  window.scrollTo({top: 0, behavior: 'smooth'})
   return (
     <div className="movie__details">
       <figure>
@@ -15,13 +18,16 @@ const MovieDetails = obj => {
       <div className="info">
         <h1>{ title }</h1>
         <div className="info__overview">
-          <strong>Visão global</strong>
+          <strong>Sinopse e detalhes</strong>
           <p>{ overview }</p>
-        </div>
-        <div className="acceptance">
-          <div>
+          <p className="release__date">
+            <span>Data de lançamento:</span>
+            { new Date(release_date).toLocaleDateString('pt-br', optionsDate) }
+          </p>
+          <p>
+            <span>Média de votos: </span>
             { vote_average }
-          </div>
+          </p>
         </div>
       </div>
     </div>
