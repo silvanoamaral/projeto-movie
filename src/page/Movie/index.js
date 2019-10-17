@@ -58,7 +58,7 @@ class Movie extends Component {
         {isEmpty
           ? (pending ? <Loading /> : <h2>Empty.</h2>)
           : <div className="container">
-            <h1 className="title">Popular Movies</h1>
+            <h1 className="title">Filmes populares</h1>
             <Card
               movie={ movie }
             />

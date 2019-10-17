@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 
 import './Card.scss'
 
+const ellipsisText = text => {
+  return text !== '' ? `${text.substring(0, 190)}...` : null
+}
+
+const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' } 
+
 class Card extends Component {
   render() {
     const { results } = this.props.movie
@@ -26,9 +32,13 @@ class Card extends Component {
                   </Link>
                 </figure>
                 <div className="info">
-                  <div className="">
-                    <p className="consensus">{ item.vote_average }</p>
-                    <strong className="title">
+                  <div className="info__top">
+                    <div className="acceptance">
+                      <div>
+                      { item.vote_average }
+                      </div>
+                    </div>
+                    <div className="title">
                       <Link
                         to={`/movie/${item.id}`}
                         aria-label={`movie-${item.title}`}
@@ -36,8 +46,10 @@ class Card extends Component {
                       >
                         { item.title }
                       </Link>
-                    </strong>
-                    <span className="data">{ new Date(item.release_date).toLocaleDateString() }</span>
+                      <span className="data">
+                        { new Date(item.release_date).toLocaleDateString('pt-br', optionsDate) }
+                      </span>
+                    </div>
                   </div>
                   <p className="overview">
                     <Link
@@ -45,7 +57,7 @@ class Card extends Component {
                       aria-label={`movie-${item.title}`}
                       accessKey={`movie-${item.title}-${item.id}`}
                     >
-                      { item.overview }
+                      { ellipsisText(item.overview) }
                     </Link>
                   </p>
                 </div>

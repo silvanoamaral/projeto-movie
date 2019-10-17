@@ -9,6 +9,7 @@
     margin-bottom: 40px;
     background: #fff;
     padding: 5px;
+    box-shadow: inset 0px 0px 4px 2px #2b5567;
 
     figure {
       margin-right: 15px;
@@ -18,27 +19,41 @@
       width: 483px;
     }
 
-    strong {
-      &.title {
-        a {
-          color: #000;
-        }
-      } 
-    }
-
     p {
       a {
         color: #4d4d4d;
         display: block;
-        word-wrap: break-word;
-        white-space: normal;
         font-size: 0.9em;
         line-height: 1.2em;
         margin-top: 30px;
-        overflow: hidden;
-        text-overflow: ellipsis;
         padding: 0;
-        width: 100%;
+        width: 95%;
+      }
+    }
+
+    .info {
+      padding: 20px 5px 10px 5px;
+
+      &__top {
+        display: flex;
+
+        .data {
+          color: #5d5b5b;
+          font-size: 14px;
+        }
+
+        .title {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          margin-left: 10px;
+
+          a {
+            color: #000;
+            width: 100%;
+            margin-bottom: 5px;
+          }
+        }
       }
     }
   }
