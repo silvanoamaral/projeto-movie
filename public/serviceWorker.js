@@ -5,7 +5,8 @@ const urlsToCache = [
   "/",
   "index.html",
   "app.js",
-  "https://api.themoviedb.org/3/movie/popular?api_key=e2c70d159f475c3cf6bd625fd21f2312&language=pt-BR&page=1"
+  "https://api.themoviedb.org/3/movie/popular?api_key=e2c70d159f475c3cf6bd625fd21f2312&language=pt-BR&page=1",
+  "https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
 ]
 
 // A primeira vez que o usuário inicia a PWA, 'install' é acionado.
