@@ -1,11 +1,11 @@
 {
   "name": "projeto-movie",
-  "theme_color": "#000000",
-  "background_color": "#ffffff", 
+  "short_name": "Projeto Movie",
+  "start_url": ".",
   "display": "standalone",
-  "orientation": "portrait ",
-  "start_url": "https://projeto-movie-app.herokuapp.com/",
-  "prefer_related_applications": false,
+  "orientation": "portrait",
+  "background_color": "#ccc",
+  "theme_color": "#5FAAE5",
   "icons": [
     {
       "src": "image/favicon.ico",

@@ -8,6 +8,7 @@
     <meta name="theme-color" content="#000000"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <div id="app"></div>
@@ -17,13 +18,12 @@
           navigator.serviceWorker
           .register('serviceWorker.js', { scope: '/' })
           .then(function(registration) {
-            // Registration was successful
-            //console.log('ServiceWorker registration successful with scope: ', registration.scope)
+            //console.log('SW registered')
           }, function(err) {
             // registration failed :(
             //console.log('ServiceWorker registration failed: ', err)
           }).catch(function(err) {
-            //console.log(err)
+           // console.log(err)
           })
         })
       } else {
